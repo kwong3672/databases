@@ -36,26 +36,26 @@ var writeToSql = function (req, res, table) {
 };
 
 var readFromSql = function(req, res, table) {
-  var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '1234',
-    database: 'chat'
+  return new Promise((resolve, reject) => {
+    var connection = mysql.createConnection({
+      host: 'localhost',
+      user: 'root',
+      password: '1234',
+      database: 'chat'
+    });
+    connection.connect();
+    // TODO replaced 'SELECT * FROM messages' with:
+    connection.query('SELECT * FROM ' + table, function(err, rows, fields) {
+      if (err) {
+        reject(err);
+      } else {
+        console.log(resolve(rows));
+        // console.log('fields', fields);
+        res.status(200).send(rows);    
+      }
+    }); 
+    connection.end();
   });
-  connection.connect();
-  // TODO replaced 'SELECT * FROM messages' with:
-  var ret = [];
-  connection.query('SELECT * FROM ' + table, function(err, rows, fields) {
-    if (err) {
-      console.log('err', err);
-    } else {
-      ret = JSON.stringify(rows);
-      console.log(ret);
-      // console.log('fields', fields);
-      res.status(200).send(ret);    
-    }
-  }); 
-  connection.end();
 };
 
 

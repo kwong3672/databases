@@ -21,7 +21,7 @@ describe('Persistent Node Chat Server', function() {
     /* Empty the db table before each test so that multiple tests
      * (or repeated runs of the tests) won't screw each other up: */
 
-    // dbConnection.query('truncate ' + tablename);
+    dbConnection.query('truncate ' + tablename);
     dbConnection.query('truncate ' + tableuser, done);
   });
 
@@ -74,6 +74,18 @@ describe('Persistent Node Chat Server', function() {
     // Let's insert a message into the db
     var tablename = 'messages'; // TODO: fill this out
 
+    request({
+      method: 'POST',
+      uri: 'http://127.0.0.1:3000/classes/messages',
+      json: {
+        text: 'Men like you can never change!',
+        username: 'Valjean',
+        room: 'Main'
+        // username: 'Valjean',
+        // message: 'In mercy\'s name, three days is all I need.',
+        // roomname: 'Hello'
+      }
+    }); 
     // TODO - The exact query string and query args to use
     // here depend on the schema you design, so I'll leave
     // them up to you. */
