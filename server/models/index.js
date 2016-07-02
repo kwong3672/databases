@@ -3,7 +3,6 @@ var db = require('../db');
 module.exports = {
   messages: {
     get: function (req, res) {
-      console.log('are we getting here???????');
       db.readFromSql(req, res, 'messages');
     }, // a function which produces all the messages
     post: function (req, res) {

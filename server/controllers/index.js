@@ -10,7 +10,6 @@ module.exports = {
   messages: {
     get: function (req, res) {
       models.messages.get(req, res);
-      // getting a request from clin
     }, // a function which handles a get request for all messages
     post: function (req, res) {
       models.messages.post(req, res);
@@ -20,6 +19,7 @@ module.exports = {
   users: {
     // Ditto as above
     get: function (req, res) {
+      models.users.get(req, res);
     },
     post: function (req, res) {
       models.users.post(req, res);

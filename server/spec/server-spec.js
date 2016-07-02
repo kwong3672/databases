@@ -80,7 +80,7 @@ describe('Persistent Node Chat Server', function() {
       json: {
         text: 'Men like you can never change!',
         username: 'Valjean',
-        room: 'Main'
+        roomname: 'Main'
         // username: 'Valjean',
         // message: 'In mercy\'s name, three days is all I need.',
         // roomname: 'Hello'
