@@ -9,19 +9,21 @@ var _ = require('underscore');
 module.exports = {
   messages: {
     get: function (req, res) {
+      console.log('we are getting a request from the user messages');
+      models.messages.get(req, res);
       // getting a request from clin
     }, // a function which handles a get request for all messages
     post: function (req, res) {
-      console.log('req-meesage', req.body);
       models.messages.post(req, res);
     } // a function which handles posting a message to the database
   },
 
   users: {
     // Ditto as above
-    get: function (req, res) {},
+    get: function (req, res) {
+      console.log('we are getting a requst from the user for users');
+    },
     post: function (req, res) {
-      console.log('req', req.body);
       models.users.post(req, res);
     }
   }

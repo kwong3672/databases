@@ -22,11 +22,6 @@ var writeToSql = function (req, res, table) {
   columns = columns.slice(0, -2);
   valueSql = valueSql.slice(0, -2);
 
-  // console.log('this is the value of column', columns);
-  // console.log('this is the value of valueSql', valueSql);
-  console.log('(' + columns + ') VALUES (' + valueSql + ')');
-
-  console.log('name', req.body.username);
   connection.connect();
   // TODO replaced 'SELECT * FROM messages' with:
   connection.query('INSERT INTO ' + table + ' (' + columns + ') VALUES (' + valueSql + ')', function(err, rows, fields) {
@@ -40,8 +35,32 @@ var writeToSql = function (req, res, table) {
   connection.end();
 };
 
+var readFromSql = function(req, res, table) {
+  var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: '1234',
+    database: 'chat'
+  });
+  connection.connect();
+  // TODO replaced 'SELECT * FROM messages' with:
+  var ret = [];
+  connection.query('SELECT * FROM ' + table, function(err, rows, fields) {
+    if (err) {
+      console.log('err', err);
+    } else {
+      ret = JSON.stringify(rows);
+      console.log(ret);
+      // console.log('fields', fields);
+      res.status(200).send(ret);    
+    }
+  }); 
+  connection.end();
+};
+
 
 
 
 
 exports.writeToSql = writeToSql;
+exports.readFromSql = readFromSql;
