@@ -2,12 +2,25 @@ CREATE DATABASE chat;
 
 USE chat;
 
-CREATE TABLE messages (
-  /* Describe your table here.*/
+
+    
+CREATE TABLE `messages` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `text` VARCHAR(255) NULL DEFAULT NULL,
+  `username` VARCHAR(40) NULL DEFAULT NULL,
+  `room` VARCHAR(40) NULL DEFAULT NULL,
+    PRIMARY KEY (`id`)
 );
 
-/* Create other tables and define schemas for them here! */
 
+    
+CREATE TABLE `users` (
+  `id` INTEGER NULL AUTO_INCREMENT DEFAULT NULL,
+  `username` VARCHAR(40) NULL DEFAULT NULL,
+  `messages` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`)
+  -- CONSTRAINT fk_PerOrders FOREIGN KEY (`id`) REFERENCES `messages`(`id`) 
+);
 
 
 
